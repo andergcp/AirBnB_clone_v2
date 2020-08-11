@@ -14,7 +14,6 @@ class FileStorage:
             _dic = {}
             for key, value in self.__objects.items():
                 _cls = key.split('.')[0]
-                print("cls: ", cls.__name__, " _cls: ", _cls)
                 if cls.__name__ == _cls:
                     _dic.update({key: value})
             return _dic
