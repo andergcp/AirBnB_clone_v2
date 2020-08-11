@@ -124,10 +124,10 @@ class HBNBCommand(cmd.Cmd):
             new_instance = eval("{}()".format(classname))
             for ins in (list_attr):
                 attribute = ins.split('=')
-                if hasattr(new_instance,attribute[0]):
+                if hasattr(new_instance, attribute[0]):
                     val = attribute[1].replace('_', ' ')
                     val = val.replace('"', '')
-                    setattr(new_instance,attribute[0],val)
+                    setattr(new_instance, attribute[0], val)
                 else:
                     continue
             print(new_instance.id)
@@ -328,6 +328,7 @@ class HBNBCommand(cmd.Cmd):
         """ Help information for the update class """
         print("Updates an object with new information")
         print("Usage: update <className> <id> <attName> <attVal>\n")
+
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
