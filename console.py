@@ -224,9 +224,9 @@ class HBNBCommand(cmd.Cmd):
             dic_ = storage.all()
 
         for k, v in dic_.items():
-            print_list.append(str(v).replace('"', ''))
+            print_list.append(str(v))
 
-        print(print_list)
+        print(str(print_list))
 
     def help_all(self):
         """ Help information for the all command """
