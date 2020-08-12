@@ -1,14 +1,14 @@
 #!/usr/bin/python3
-""" test for console """
+"""test for console"""
 import unittest
 from unittest.mock import patch
 from io import StringIO
 import pep8
 import os
-from os import getenv
 import json
 import console
 import tests
+from models import storage
 from console import HBNBCommand
 from models.base_model import BaseModel
 from models.user import User
@@ -21,11 +21,11 @@ from models.engine.file_storage import FileStorage
 
 
 class TestConsole(unittest.TestCase):
-    """ this will test the console """
+    """this will test the console"""
 
     @classmethod
     def setUpClass(cls):
-        """ setup for the test """
+        """setup for the test"""
         cls.consol = HBNBCommand()
 
     @classmethod
@@ -41,13 +41,13 @@ class TestConsole(unittest.TestCase):
             pass
 
     def test_pep8_console(self):
-        """ Pep8 console.py """
+        """Pep8 console.py"""
         style = pep8.StyleGuide(quiet=True)
         p = style.check_files(["console.py"])
         self.assertEqual(p.total_errors, 0, 'fix Pep8')
 
     def test_docstrings_in_console(self):
-        """ checking for docstrings """
+        """checking for docstrings"""
         self.assertIsNotNone(console.__doc__)
         self.assertIsNotNone(HBNBCommand.emptyline.__doc__)
         self.assertIsNotNone(HBNBCommand.do_quit.__doc__)
@@ -62,13 +62,13 @@ class TestConsole(unittest.TestCase):
         self.assertIsNotNone(HBNBCommand.default.__doc__)
 
     def test_emptyline(self):
-        """ Test empty line input """
+        """Test empty line input"""
         with patch('sys.stdout', new=StringIO()) as f:
             self.consol.onecmd("\n")
             self.assertEqual('', f.getvalue())
 
     def test_quit(self):
-        """ test quit command inpout """
+        """test quit command inpout"""
         with patch('sys.stdout', new=StringIO()) as f:
             self.consol.onecmd("quit")
             self.assertEqual('', f.getvalue())
