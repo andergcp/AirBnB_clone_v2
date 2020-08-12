@@ -5,6 +5,8 @@ from sqlalchemy.ext.declarative import declarative_base
 from datetime import datetime
 from sqlalchemy import Column, Integer, String, DateTime, ForeignKey
 
+
+
 Base = declarative_base()
 
 
@@ -29,14 +31,21 @@ class BaseModel:
                     value = strptime(value, '%Y-%m-%dT%H:%M:%S.%f')
                 if key != '__class__':
                     setatrr(self, key, value)
-            if id not in kwargs.keys():
-                setatrr(self, id, str(uuid.uuid4()))
+            if "id" not in kwargs.keys():
+                setattr(self, "id", str(uuid.uuid4()))
+            time = datetime.now()
+            if "created_at" not in kwargs.keys():
+                setattr(self, "created_at", time)
+            if "updated_at" not in kwargs.keys():
+                setattr(self, "updated_at", time)
 
     def __str__(self):
         """Returns a string representation of the instance"""
-        cls = self.to_dict()
-#        cls = (str(type(self)).split('.')[-1]).split('\'')[0]
-        return '[{}] ({}) {}'.format(cls, self.id, self.__dict__)
+        dic = self.to_dict()
+#       cls = (str(type(self)).split('.')[-1]).split('\'')[0]
+#       return '[{}] ({}) {}'.format(cls, self.id, self.__dict__)
+        return "[{}] ({}) {}".format(
+            type(self).__name__, self.id, dic)
 
     def save(self):
         """Updates updated_at with current time when instance is changed"""
