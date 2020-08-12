@@ -217,17 +217,12 @@ class HBNBCommand(cmd.Cmd):
             if args not in HBNBCommand.classes:
                 print("** class doesn't exist **")
                 return
-            if environ.get('HBNB_TYPE_STORAGE') == 'FileStorage':
-                dic_ = FileStorage.all(args)
-            else:
-                dic_ = DBStorage.all(args)
+            dic_ = storage.all(args)
 
         else:
-            if environ.get('HBNB_TYPE_STORAGE') == 'FileStorage':
-                dic_ = FileStorage.all()
-            else:
-                dic_ = DBStorage.all()
-        for k, v in dic_:
+            dic_ = storage.all()
+
+        for k, v in dic_.items():
             print_list.append(str(v))
 
         print(print_list)
