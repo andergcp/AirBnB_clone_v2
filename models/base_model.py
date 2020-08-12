@@ -56,15 +56,14 @@ class BaseModel:
         dictionary = {}
         dictionary.update(self.__dict__)
         dictionary.update({'__class__':
-                          (str(type(self)).split('.')[-1]).split('\'')[0]})
+                           (str(type(self)).split('.')[-1]).split('\'')[0]})
         dictionary['created_at'] = self.created_at.isoformat()
         dictionary['updated_at'] = self.updated_at.isoformat()
-
-#        if '_sa_instance_state' in dictionary:
-        if '_sa_instance_state' in dictionary.keys():
+        if '_sa_instance_state' in dictionary:
             dictionary.pop('_sa_instance_state', None)
         return dictionary
-
+            
+            
     def delete(self):
         """Deletes the instance from the storage"""
         models.storage.delete(self)

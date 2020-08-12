@@ -222,12 +222,10 @@ class HBNBCommand(cmd.Cmd):
 
         else:
             dic_ = storage.all()
-
         for k, v in dic_.items():
             if k.split('.')[0] == args:
                 print_list.append(str(v))
-
-        print(str(print_list))
+        print(print_list)
 
     def help_all(self):
         """ Help information for the all command """
