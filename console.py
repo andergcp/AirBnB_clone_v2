@@ -2,6 +2,7 @@
 """ Console Module """
 import cmd
 import sys
+from os import environ
 from models.base_model import BaseModel
 from models.__init__ import storage
 from models.user import User
@@ -10,7 +11,8 @@ from models.state import State
 from models.city import City
 from models.amenity import Amenity
 from models.review import Review
-
+from models.engine.db_storage import DBStorage
+from models.engine.file_storage import FileStorage
 
 class HBNBCommand(cmd.Cmd):
     """ Contains the functionality for the HBNB console"""
@@ -215,12 +217,18 @@ class HBNBCommand(cmd.Cmd):
             if args not in HBNBCommand.classes:
                 print("** class doesn't exist **")
                 return
-            for k, v in storage._FileStorage__objects.items():
-                if k.split('.')[0] == args:
-                    print_list.append(str(v))
+            if environ.get('HBNB_TYPE_STORAGE') == 'FileStorage':
+                dic_ = FileStorage.all(args)
+            else:
+                dic_ = DBStorage.all(args)
+
         else:
-            for k, v in storage._FileStorage__objects.items():
-                print_list.append(str(v))
+            if environ.get('HBNB_TYPE_STORAGE') == 'FileStorage':
+                dic_ = FileStorage.all()
+            else:
+                dic_ = DBStorage.all()
+        for k, v in dic_:
+            print_list.append(str(v))
 
         print(print_list)
 
