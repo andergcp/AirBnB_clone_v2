@@ -24,15 +24,10 @@ class DBStorage:
         _db = environ.get('HBNB_MYSQL_DB')
 
         self.__engine = create_engine(
-        'mysql+mysqldb://{}:{}@{}/{}'
+            'mysql+mysqldb://{}:{}@{}/{}'
             .format(user_db, pass_db, host_db, _db), pool_pre_ping=True)
 
-#        Session = sessionmaker(bind=self.__engine)
-#        __session = Session()
-
         if environ.get('HBNB_ENV') == 'test':
-#            result = session.query(State)
-#            session.delete(result)
             Base.metada.drop_all(bind=self.__engine)
 
     def all(self, cls=None):
@@ -73,9 +68,7 @@ class DBStorage:
         session_fact = sessionmaker(bind=self.__engine, expire_on_commit=False)
         Session = scoped_session(session_fact)
         self.__session = Session()
-#        self.__session = sessionmaker(bind=self.__engine,expire_on_commit=False)
-#        self.__session = self.__session()
-#        Session = scoped_session(self.__session)
+
     def classes(self):
         """Returns a dictionary of valid classes and their references."""
         from models.base_model import BaseModel

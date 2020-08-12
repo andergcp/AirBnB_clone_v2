@@ -11,7 +11,6 @@ class State(BaseModel, Base):
     __tablename__ = 'states'
     name = Column(String(128), nullable=False)
 
-
     if environ.get('HBNB_TYPE_STORAGE') == 'db':
         cities = relationship('City', backref="state", cascade="all, delete")
 
@@ -19,4 +18,5 @@ class State(BaseModel, Base):
         @property
         def cities(self):
             """Gets cities related to state"""
-            return [city for city in models.storage.all(City) if City.state_id == self.id]
+            return [city for city in models.storage.all(City)
+                    if City.state_id == self.id]

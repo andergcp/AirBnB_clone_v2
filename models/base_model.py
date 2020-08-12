@@ -7,6 +7,7 @@ from sqlalchemy import Column, Integer, String, DateTime, ForeignKey
 
 Base = declarative_base()
 
+
 class BaseModel:
     """A base class for all hbnb models"""
 
@@ -21,17 +22,15 @@ class BaseModel:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
-#Move it to def save(self)            storage.new(self)
+
         else:
             for key, value in kwargs.items():
                 if key == 'updated_at' or key == 'created_at':
-                    value = strptime(value,'%Y-%m-%dT%H:%M:%S.%f')
+                    value = strptime(value, '%Y-%m-%dT%H:%M:%S.%f')
                 if key != '__class__':
                     setatrr(self, key, value)
             if id not in kwargs.keys():
                 setatrr(self, id, str(uuid.uuid4()))
-    #        del kwargs['__class__']
-     #       self.__dict__.update(kwargs)
 
     def __str__(self):
         """Returns a string representation of the instance"""
@@ -53,7 +52,7 @@ class BaseModel:
                           (str(type(self)).split('.')[-1]).split('\'')[0]})
         dictionary['created_at'] = self.created_at.isoformat()
         dictionary['updated_at'] = self.updated_at.isoformat()
-#Removes _sa_instance_state form dictionary
+
         if _sa_instance_state in dictionary.keys():
             del dictionary['_sa_instance_state']
         return dictionary
