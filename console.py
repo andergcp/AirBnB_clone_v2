@@ -224,7 +224,8 @@ class HBNBCommand(cmd.Cmd):
             dic_ = storage.all()
 
         for k, v in dic_.items():
-            print_list.append(str(v))
+            if k.split('.')[0] == args:
+                print_list.append(str(v))
 
         print(str(print_list))
 
