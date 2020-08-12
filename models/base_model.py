@@ -6,7 +6,6 @@ from datetime import datetime
 from sqlalchemy import Column, Integer, String, DateTime, ForeignKey
 
 
-
 Base = declarative_base()
 
 
@@ -42,8 +41,6 @@ class BaseModel:
     def __str__(self):
         """Returns a string representation of the instance"""
         cls = self.to_dict()
-        #cls = (str(type(self)).split('.')[-1]).split('\'')[0]
-        #return '[{}] ({}) {}'.format(cls, self.id, self.__dict__)
         return "[{}] ({}) {}".format(
             type(self).__name__, self.id, cls)
 
