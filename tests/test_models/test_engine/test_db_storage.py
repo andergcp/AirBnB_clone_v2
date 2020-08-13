@@ -53,5 +53,6 @@ class test_DBStorage(unittest.TestCase):
         self.session.close()
         self.session.rollback()
 
+
 if __name__ == "__main__":
     unittest.main()
