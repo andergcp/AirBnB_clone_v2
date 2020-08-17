@@ -23,8 +23,8 @@ def do_deploy(archive_path):
 
     put(archive_path, remote_path)
     run('mkdir -p /data/web_static/releases/{}/'.format(file_name))
-    run('tar -xzf /tmp/{0} -C\
-    /data/web_static/releases/{0}/'.format(file_name))
+    run('tar -xzf /tmp/{0} -C /data/web_static/releases/{0}/'
+        .format(file_name))
     run('rm /tmp/{}'.format(file_name))
     run('mv /data/web_static/releases/{0}/web_static/* \
     /data/web_static/releases/{0}/'.format(file_name))
@@ -33,6 +33,8 @@ def do_deploy(archive_path):
     run('ln -s /data/web_static/releases/{}/ \
     /data/web_static/current'.format(file_name))
     print("New version deployed!\n")
+
+    return true
 
 def do_pack():
     """
