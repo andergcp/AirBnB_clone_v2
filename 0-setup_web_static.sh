@@ -27,9 +27,11 @@ sudo chown -R ubuntu:ubuntu /data/
 
 # Updates the Nginx configuration to serve the content of /data/web_static/current/
 # to hbnb_static (ex: https://mydomainname.tech/hbnb_static).
-new_lines='server_name _;\n\tlocation \/hbnb_static\/ {\n\t\talias \/data\/web_static\/current\/;\n\t}\n'
-search='server_name _;'
-sudo sed -i "s/$search/$new_lines/" /etc/nginx/sites-available/default
+#new_lines= '\n\tlocation /hbnb_static/ { alias /data/web_static/current/; }'
+#search= 'listen 80 default_server;'
+#sudo sed -i '/$search/a $new_lines' /etc/nginx/sites-available/default
+sudo sed -i '/listen 80 default_server;/a location /hbnb_static/ { alias /data/web_static/current/; }' /etc/nginx/sites-available/default
+# sudo sed -i "s/$search/$new_lines/" /etc/nginx/sites-available/default
 
 # Restarts Nginx after updating the configuration
 sudo service nginx restart
