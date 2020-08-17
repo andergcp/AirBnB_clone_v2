@@ -34,7 +34,8 @@ def do_deploy(archive_path):
     /data/web_static/current'.format(file_name))
     print("New version deployed!\n")
 
-    return true
+    return True
+
 
 def do_pack():
     """
