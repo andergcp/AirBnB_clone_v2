@@ -17,7 +17,8 @@ class FileStorage:
                 if cls.__name__ == _cls:
                     _dic.update({key: value})
             return _dic
-        return self.__objects
+        else:
+            return self.__objects
 
     def new(self, obj):
         """Adds new object to storage dictionary"""
@@ -69,4 +70,4 @@ class FileStorage:
         Call reload method for
         Deserializing JSON file to objects
         """
-        reload(self)
+        self.reload()

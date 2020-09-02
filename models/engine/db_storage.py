@@ -33,7 +33,7 @@ class DBStorage:
     def all(self, cls=None):
         """Return all objects"""
         if cls:
-            objs = self.__session.query(self.classes()[cls])
+            objs = self.__session.query(eval(cls.__name__)).all()
         else:
             objs = self.__session.query(State).all()
             objs += self.__session.query(City).all()
@@ -67,7 +67,7 @@ class DBStorage:
         Base.metadata.create_all(self.__engine)
         session_fact = sessionmaker(bind=self.__engine, expire_on_commit=False)
         Session = scoped_session(session_fact)
-        self.__session = Session()
+        self.__session = Session
 
     def classes(self):
         """Returns a dictionary of valid classes and their references."""
@@ -89,4 +89,5 @@ class DBStorage:
         return classes
 
     def close(self):
+        """Closes the current session"""
         self.__session.remove()
