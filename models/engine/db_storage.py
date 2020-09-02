@@ -87,3 +87,6 @@ class DBStorage:
                    "Place": Place,
                    "Review": Review}
         return classes
+
+    def close(self):
+        self.__session.remove()
