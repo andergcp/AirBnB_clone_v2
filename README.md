@@ -149,3 +149,11 @@ Usage: <class_name>.update(<_id>, <dictionary>)
 (hbnb) ["[User] (98bea5de-9cb0-4d78-8a9d-c4de03521c30) {'updated_at': datetime.datetime(2020, 2, 19, 21, 47, 29, 134362), 'name': 'Fred the Frog', 'age': 9, 'id': '98bea5de-9cb0-4d78-8a9d-c4de03521c30', 'created_at': datetime.datetime(2020, 2, 19, 21, 47, 29, 134343)}"]
 ```
 <br>
+
+### Authors
+* Anderson Castiblanco [Github](https://github.com/andergcp) - [LinkedIn](https://www.linkedin.com/in/anderson-castiblanco-prieto)
+* Ezra Nobrega <ezra.nobrega@outlook.com>
+* Justin Majetich <justinmajetich@gmail.com>
+
+[contributors-shield]: https://img.shields.io/github/contributors/andergcp/AirBnB_clone?style=social&logo=appveyor
+[contributors-url]: https://github.com/andergcp/AirBnB_clone/graphs/contributors
