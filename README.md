@@ -1,4 +1,4 @@
-# AirBnB_clone
+# AirBnB_clone v2
 [![Contributors][contributors-shield]][contributors-url]
 
 <p align="center">
